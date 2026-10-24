@@ -1,0 +1,2284 @@
+{
+  "version": "2.5.0",
+  "summary": {
+    "title": "ShopSphere Microservices STRIDE Model",
+    "owner": "Student Project",
+    "description": "STRIDE-per-element threat model of an e-commerce microservice system.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "ShopSphere data flow diagram",
+        "diagramType": "STRIDE",
+        "placeholder": "STRIDE data flow diagram",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.5.0",
+        "cells": [
+          {
+            "shape": "trust-boundary-box",
+            "id": "2f8ed21c-ed5d-47b0-bb7c-d5c5621e977a",
+            "zIndex": 0,
+            "position": {
+              "x": 18,
+              "y": 36
+            },
+            "size": {
+              "width": 252,
+              "height": 828
+            },
+            "visible": true,
+            "attrs": {
+              "headerText": {
+                "text": "Internet zone"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Internet zone",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "shape": "trust-boundary-box",
+            "id": "31aef959-e406-4d85-8646-498022aa5fd8",
+            "zIndex": 0,
+            "position": {
+              "x": 342,
+              "y": 270
+            },
+            "size": {
+              "width": 198,
+              "height": 270
+            },
+            "visible": true,
+            "attrs": {
+              "headerText": {
+                "text": "DMZ"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "DMZ",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "shape": "trust-boundary-box",
+            "id": "138a2697-7292-4fb6-b70a-c034a59d1e92",
+            "zIndex": 0,
+            "position": {
+              "x": 594,
+              "y": 36
+            },
+            "size": {
+              "width": 900,
+              "height": 828
+            },
+            "visible": true,
+            "attrs": {
+              "headerText": {
+                "text": "Internal network"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Internal network",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "shape": "actor",
+            "id": "4c097f08-aed1-4c71-a86d-c133d29bf4b3",
+            "zIndex": 2,
+            "visible": true,
+            "position": {
+              "x": 72.0,
+              "y": 144
+            },
+            "size": {
+              "width": 144,
+              "height": 72
+            },
+            "attrs": {
+              "text": {
+                "text": "Customer"
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "Customer",
+              "description": "Shopper using web or mobile app",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": "d553bf7d-eb0b-4137-9abb-8d679ad78a40",
+                  "title": "Impersonation of Customer",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "An attacker uses stolen, guessed or phished credentials or session tokens to act as Customer.",
+                  "mitigation": "Enforce MFA, strong password policy, short-lived tokens, login anomaly detection.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": "20"
+                },
+                {
+                  "id": "be0e6b1a-aa9d-400f-9b2c-1bd79f5438c3",
+                  "title": "Customer denies performing an action",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "Customer claims an order, payment or change was never made and the system cannot prove otherwise.",
+                  "mitigation": "Tamper-evident audit logs with user ID, time and source IP.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": "4"
+                }
+              ],
+              "hasOpenThreats": true,
+              "providesAuthentication": false
+            }
+          },
+          {
+            "shape": "actor",
+            "id": "68288bb7-982d-4663-8cf2-b3df0927441d",
+            "zIndex": 3,
+            "visible": true,
+            "position": {
+              "x": 72.0,
+              "y": 369
+            },
+            "size": {
+              "width": 144,
+              "height": 72
+            },
+            "attrs": {
+              "text": {
+                "text": "Admin"
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "Admin",
+              "description": "Staff member managing the shop",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": "64c9af8e-8d93-40dd-af55-435a9a8a23f8",
+                  "title": "Impersonation of Admin",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Spoofing",
+                  "description": "An attacker uses stolen, guessed or phished credentials or session tokens to act as Admin.",
+                  "mitigation": "Enforce MFA, strong password policy, short-lived tokens, login anomaly detection.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": "5"
+                },
+                {
+                  "id": "85f00069-ff01-4d21-bcc5-b5cc03c31ec5",
+                  "title": "Admin denies performing an action",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "Admin claims an order, payment or change was never made and the system cannot prove otherwise.",
+                  "mitigation": "Tamper-evident audit logs with user ID, time and source IP.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": "4"
+                }
+              ],
+              "hasOpenThreats": false,
+              "providesAuthentication": false
+            }
+          },
+          {
+            "shape": "actor",
+            "id": "05fee58a-7213-483e-94ee-42f86dc954b0",
+            "zIndex": 4,
+            "visible": true,
+            "position": {
+              "x": 72.0,
+              "y": 702
+            },
+            "size": {
+              "width": 144,
+              "height": 72
+            },
+            "attrs": {
+              "text": {
+                "text": "Payment Provider"
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "Payment Provider",
+              "description": "External card-payment provider",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": "7379feec-709a-400a-b627-5f64a5e92e33",
+                  "title": "Impersonation of Payment Provider",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "An attacker uses stolen, guessed or phished credentials or session tokens to act as Payment Provider.",
+                  "mitigation": "Enforce MFA, strong password policy, short-lived tokens, login anomaly detection.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": "20"
+                },
+                {
+                  "id": "2beb0f96-20b3-4d9a-9c62-0de19e3d5e87",
+                  "title": "Payment Provider denies performing an action",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "Payment Provider claims an order, payment or change was never made and the system cannot prove otherwise.",
+                  "mitigation": "Tamper-evident audit logs with user ID, time and source IP.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": "4"
+                }
+              ],
+              "hasOpenThreats": true,
+              "providesAuthentication": false
+            }
+          },
+          {
+            "shape": "process",
+            "id": "829d9131-0412-46b4-b149-f5739bf85a5b",
+            "zIndex": 5,
+            "visible": true,
+            "position": {
+              "x": 351.0,
+              "y": 360
+            },
+            "size": {
+              "width": 180,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "API Gateway"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "API Gateway",
+              "description": "Single public entry point",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": "3e013e8e-7f24-448a-9caf-cba6508184e3",
+                  "title": "Spoofed caller or fake instance of API Gateway",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Spoofing",
+                  "description": "A rogue service or attacker impersonates a trusted caller of API Gateway, or pretends to be API Gateway.",
+                  "mitigation": "Mutual TLS between services, signed JWTs, service mesh identity.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": "5"
+                },
+                {
+                  "id": "efa1dd96-8dac-4726-a8fd-9274a8bbdfeb",
+                  "title": "Malicious input or code change in API Gateway",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "Injection or parameter tampering, or a modified image/config, changes how API Gateway behaves.",
+                  "mitigation": "Input and schema validation, signed container images, immutable deployments.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": "5"
+                },
+                {
+                  "id": "bed98e51-46d0-4946-9913-fce086d82744",
+                  "title": "Missing audit trail in API Gateway",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "Actions handled by API Gateway are not logged, so incidents cannot be investigated or users held accountable.",
+                  "mitigation": "Central, append-only structured logging with correlation IDs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": "4"
+                },
+                {
+                  "id": "2efd9ac4-484c-4f99-88e3-4686a9abc533",
+                  "title": "Data leakage from API Gateway",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Verbose errors, debug endpoints or logs of API Gateway reveal secrets or personal data.",
+                  "mitigation": "Generic error messages, log scrubbing, secrets manager.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": "20"
+                },
+                {
+                  "id": "f6972ee1-37a2-4873-94b5-8b9af5bf10f1",
+                  "title": "Resource exhaustion of API Gateway",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Request flooding or heavy calls exhaust CPU, memory or threads of API Gateway.",
+                  "mitigation": "Rate limiting, timeouts, circuit breakers, autoscaling.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": "4"
+                },
+                {
+                  "id": "8b997dd0-6538-408e-88ae-9bd6114bd90f",
+                  "title": "Broken access control in API Gateway",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Elevation of privilege",
+                  "description": "A low-privileged caller performs admin or cross-user operations in API Gateway.",
+                  "mitigation": "RBAC/ABAC check on every request, least-privilege service accounts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": "5"
+                }
+              ],
+              "hasOpenThreats": true,
+              "privilegeLevel": ""
+            }
+          },
+          {
+            "shape": "process",
+            "id": "350b093a-f73a-4b68-9333-e97ed8602f96",
+            "zIndex": 6,
+            "visible": true,
+            "position": {
+              "x": 666.0,
+              "y": 81
+            },
+            "size": {
+              "width": 180,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Auth Service"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Auth Service",
+              "description": "Logins and tokens",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": "97bdc45a-45ec-4095-9a30-e31a6c1583bc",
+                  "title": "Spoofed caller or fake instance of Auth Service",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Spoofing",
+                  "description": "A rogue service or attacker impersonates a trusted caller of Auth Service, or pretends to be Auth Service.",
+                  "mitigation": "Mutual TLS between services, signed JWTs, service mesh identity.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": "5"
+                },
+                {
+                  "id": "a1ed4d61-342a-4493-bb0c-2312045126f5",
+                  "title": "Malicious input or code change in Auth Service",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "Injection or parameter tampering, or a modified image/config, changes how Auth Service behaves.",
+                  "mitigation": "Input and schema validation, signed container images, immutable deployments.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": "5"
+                },
+                {
+                  "id": "d3b5f9e8-b678-489e-adef-4398180b9120",
+                  "title": "Missing audit trail in Auth Service",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "Actions handled by Auth Service are not logged, so incidents cannot be investigated or users held accountable.",
+                  "mitigation": "Central, append-only structured logging with correlation IDs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": "4"
+                },
+                {
+                  "id": "f442f408-2cf3-417b-8f02-dfee284afd59",
+                  "title": "Data leakage from Auth Service",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Verbose errors, debug endpoints or logs of Auth Service reveal secrets or personal data.",
+                  "mitigation": "Generic error messages, log scrubbing, secrets manager.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": "15"
+                },
+                {
+                  "id": "5e55f58b-a2c0-40ea-a08e-724b08413cb0",
+                  "title": "Resource exhaustion of Auth Service",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Request flooding or heavy calls exhaust CPU, memory or threads of Auth Service.",
+                  "mitigation": "Rate limiting, timeouts, circuit breakers, autoscaling.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": "12"
+                },
+                {
+                  "id": "f2fb9b99-97e2-4310-a8a6-9f9d41ea2024",
+                  "title": "Broken access control in Auth Service",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Elevation of privilege",
+                  "description": "A low-privileged caller performs admin or cross-user operations in Auth Service.",
+                  "mitigation": "RBAC/ABAC check on every request, least-privilege service accounts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 18,
+                  "score": "5"
+                }
+              ],
+              "hasOpenThreats": true,
+              "privilegeLevel": ""
+            }
+          },
+          {
+            "shape": "process",
+            "id": "cffc110e-1eba-4fbb-b0a9-870b04e7c328",
+            "zIndex": 7,
+            "visible": true,
+            "position": {
+              "x": 666.0,
+              "y": 333
+            },
+            "size": {
+              "width": 180,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Order Service"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Order Service",
+              "description": "Order handling",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": "6625cd67-acfa-4f8a-8cdc-a5a744a33dec",
+                  "title": "Spoofed caller or fake instance of Order Service",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Spoofing",
+                  "description": "A rogue service or attacker impersonates a trusted caller of Order Service, or pretends to be Order Service.",
+                  "mitigation": "Mutual TLS between services, signed JWTs, service mesh identity.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 19,
+                  "score": "5"
+                },
+                {
+                  "id": "8c28396d-b738-4fe7-a631-0e08dbc11c7b",
+                  "title": "Malicious input or code change in Order Service",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "Injection or parameter tampering, or a modified image/config, changes how Order Service behaves.",
+                  "mitigation": "Input and schema validation, signed container images, immutable deployments.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": "5"
+                },
+                {
+                  "id": "bd4c8da5-3af4-493f-ab50-7afab90eb0c7",
+                  "title": "Missing audit trail in Order Service",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Actions handled by Order Service are not logged, so incidents cannot be investigated or users held accountable.",
+                  "mitigation": "Central, append-only structured logging with correlation IDs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": "12"
+                },
+                {
+                  "id": "2a57f16b-11a5-464a-8266-43e8026f4854",
+                  "title": "Data leakage from Order Service",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Verbose errors, debug endpoints or logs of Order Service reveal secrets or personal data.",
+                  "mitigation": "Generic error messages, log scrubbing, secrets manager.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 22,
+                  "score": "15"
+                },
+                {
+                  "id": "cc09ec5b-c150-4d1b-bb90-c74dbb59cf93",
+                  "title": "Resource exhaustion of Order Service",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Request flooding or heavy calls exhaust CPU, memory or threads of Order Service.",
+                  "mitigation": "Rate limiting, timeouts, circuit breakers, autoscaling.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": "12"
+                },
+                {
+                  "id": "212e8ce9-aca5-43b0-91a6-13e52b08dbdf",
+                  "title": "Broken access control in Order Service",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Elevation of privilege",
+                  "description": "A low-privileged caller performs admin or cross-user operations in Order Service.",
+                  "mitigation": "RBAC/ABAC check on every request, least-privilege service accounts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 24,
+                  "score": "5"
+                }
+              ],
+              "hasOpenThreats": true,
+              "privilegeLevel": ""
+            }
+          },
+          {
+            "shape": "process",
+            "id": "ce0679b8-d403-44a8-9667-e91e8b4eee37",
+            "zIndex": 8,
+            "visible": true,
+            "position": {
+              "x": 666.0,
+              "y": 657
+            },
+            "size": {
+              "width": 180,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Payment Service"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Payment Service",
+              "description": "Payment processing",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": "f4c862c6-a85e-48d1-bba6-07e377f28805",
+                  "title": "Spoofed caller or fake instance of Payment Service",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Spoofing",
+                  "description": "A rogue service or attacker impersonates a trusted caller of Payment Service, or pretends to be Payment Service.",
+                  "mitigation": "Mutual TLS between services, signed JWTs, service mesh identity.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 25,
+                  "score": "5"
+                },
+                {
+                  "id": "3cb2394e-37f3-4e34-a938-564b4174114e",
+                  "title": "Malicious input or code change in Payment Service",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "Injection or parameter tampering, or a modified image/config, changes how Payment Service behaves.",
+                  "mitigation": "Input and schema validation, signed container images, immutable deployments.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 26,
+                  "score": "5"
+                },
+                {
+                  "id": "311947c3-6c04-419e-97f0-8fc07be20506",
+                  "title": "Missing audit trail in Payment Service",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "Actions handled by Payment Service are not logged, so incidents cannot be investigated or users held accountable.",
+                  "mitigation": "Central, append-only structured logging with correlation IDs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 27,
+                  "score": "4"
+                },
+                {
+                  "id": "dc5ac527-e4ff-40e8-bce4-18ecb948a61d",
+                  "title": "Data leakage from Payment Service",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Verbose errors, debug endpoints or logs of Payment Service reveal secrets or personal data.",
+                  "mitigation": "Generic error messages, log scrubbing, secrets manager.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 28,
+                  "score": "5"
+                },
+                {
+                  "id": "54c69a8d-6660-49cb-a872-dab53581eaec",
+                  "title": "Resource exhaustion of Payment Service",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Request flooding or heavy calls exhaust CPU, memory or threads of Payment Service.",
+                  "mitigation": "Rate limiting, timeouts, circuit breakers, autoscaling.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 29,
+                  "score": "12"
+                },
+                {
+                  "id": "0561b64c-2972-4c5c-a84a-d9c3c5dfc40e",
+                  "title": "Broken access control in Payment Service",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Elevation of privilege",
+                  "description": "A low-privileged caller performs admin or cross-user operations in Payment Service.",
+                  "mitigation": "RBAC/ABAC check on every request, least-privilege service accounts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": "5"
+                }
+              ],
+              "hasOpenThreats": true,
+              "privilegeLevel": ""
+            }
+          },
+          {
+            "shape": "process",
+            "id": "c3134fca-89b8-4672-b636-8299646deca8",
+            "zIndex": 9,
+            "visible": true,
+            "position": {
+              "x": 1035.0,
+              "y": 441
+            },
+            "size": {
+              "width": 180,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Inventory Service"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Inventory Service",
+              "description": "Stock levels",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": "5830c310-382f-4d97-ac9c-d26c5602d49a",
+                  "title": "Spoofed caller or fake instance of Inventory Service",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Spoofing",
+                  "description": "A rogue service or attacker impersonates a trusted caller of Inventory Service, or pretends to be Inventory Service.",
+                  "mitigation": "Mutual TLS between services, signed JWTs, service mesh identity.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 31,
+                  "score": "4"
+                },
+                {
+                  "id": "41e6bbd2-f079-4766-b710-fd01708b2c8e",
+                  "title": "Malicious input or code change in Inventory Service",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "Injection or parameter tampering, or a modified image/config, changes how Inventory Service behaves.",
+                  "mitigation": "Input and schema validation, signed container images, immutable deployments.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 32,
+                  "score": "4"
+                },
+                {
+                  "id": "81503d52-d062-4fa7-8b88-7fd5485906df",
+                  "title": "Missing audit trail in Inventory Service",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Actions handled by Inventory Service are not logged, so incidents cannot be investigated or users held accountable.",
+                  "mitigation": "Central, append-only structured logging with correlation IDs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 33,
+                  "score": "9"
+                },
+                {
+                  "id": "3d28ed56-0c11-4000-aec4-48b4f0d30eeb",
+                  "title": "Data leakage from Inventory Service",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Verbose errors, debug endpoints or logs of Inventory Service reveal secrets or personal data.",
+                  "mitigation": "Generic error messages, log scrubbing, secrets manager.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 34,
+                  "score": "12"
+                },
+                {
+                  "id": "e12669f5-300b-452a-9422-9cd5e7db0e6d",
+                  "title": "Resource exhaustion of Inventory Service",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Request flooding or heavy calls exhaust CPU, memory or threads of Inventory Service.",
+                  "mitigation": "Rate limiting, timeouts, circuit breakers, autoscaling.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 35,
+                  "score": "3"
+                },
+                {
+                  "id": "85242481-9a8b-4847-a319-b9de7480f273",
+                  "title": "Broken access control in Inventory Service",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "A low-privileged caller performs admin or cross-user operations in Inventory Service.",
+                  "mitigation": "RBAC/ABAC check on every request, least-privilege service accounts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 36,
+                  "score": "15"
+                }
+              ],
+              "hasOpenThreats": true,
+              "privilegeLevel": ""
+            }
+          },
+          {
+            "shape": "process",
+            "id": "86363e78-6491-4453-b232-c353cd099796",
+            "zIndex": 10,
+            "visible": true,
+            "position": {
+              "x": 1305.0,
+              "y": 657
+            },
+            "size": {
+              "width": 180,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Notification Service"
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Notification Service",
+              "description": "Email and SMS messages",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": "9bb94d02-0aac-4fc8-b8fa-bf496eb58923",
+                  "title": "Spoofed caller or fake instance of Notification Service",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "A rogue service or attacker impersonates a trusted caller of Notification Service, or pretends to be Notification Service.",
+                  "mitigation": "Mutual TLS between services, signed JWTs, service mesh identity.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 37,
+                  "score": "12"
+                },
+                {
+                  "id": "dfc28233-6729-44ce-98e3-4d1dadcfa9f7",
+                  "title": "Malicious input or code change in Notification Service",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "Injection or parameter tampering, or a modified image/config, changes how Notification Service behaves.",
+                  "mitigation": "Input and schema validation, signed container images, immutable deployments.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 38,
+                  "score": "4"
+                },
+                {
+                  "id": "74f24fde-9ecd-49fa-b46c-f85d7644aaec",
+                  "title": "Missing audit trail in Notification Service",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Actions handled by Notification Service are not logged, so incidents cannot be investigated or users held accountable.",
+                  "mitigation": "Central, append-only structured logging with correlation IDs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 39,
+                  "score": "9"
+                },
+                {
+                  "id": "113ba7df-9c28-4a26-af6e-86c39b16197d",
+                  "title": "Data leakage from Notification Service",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Verbose errors, debug endpoints or logs of Notification Service reveal secrets or personal data.",
+                  "mitigation": "Generic error messages, log scrubbing, secrets manager.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 40,
+                  "score": "12"
+                },
+                {
+                  "id": "624c0fb1-2edf-4472-ac17-bb60ab9e9829",
+                  "title": "Resource exhaustion of Notification Service",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Request flooding or heavy calls exhaust CPU, memory or threads of Notification Service.",
+                  "mitigation": "Rate limiting, timeouts, circuit breakers, autoscaling.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 41,
+                  "score": "9"
+                },
+                {
+                  "id": "892d019e-e33c-4c17-baa2-ffce4ffd1ecb",
+                  "title": "Broken access control in Notification Service",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "A low-privileged caller performs admin or cross-user operations in Notification Service.",
+                  "mitigation": "RBAC/ABAC check on every request, least-privilege service accounts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 42,
+                  "score": "15"
+                }
+              ],
+              "hasOpenThreats": true,
+              "privilegeLevel": ""
+            }
+          },
+          {
+            "shape": "store",
+            "id": "bbb7f713-7223-4ad7-99af-4523abd493f0",
+            "zIndex": 11,
+            "visible": true,
+            "position": {
+              "x": 1035.0,
+              "y": 94.5
+            },
+            "size": {
+              "width": 180,
+              "height": 63.0
+            },
+            "attrs": {
+              "text": {
+                "text": "Users DB"
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "Users DB",
+              "description": "Accounts and password hashes",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": "a67680ba-e71f-4c40-88f1-af67d89b232d",
+                  "title": "Unauthorised modification of data in Users DB",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "SQL injection or a stolen DB account lets an attacker change or delete records in Users DB.",
+                  "mitigation": "Least-privilege DB accounts, parameterised queries, integrity checks.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 43,
+                  "score": "5"
+                },
+                {
+                  "id": "bc332902-5961-45de-9d45-5c95e1717154",
+                  "title": "Untraceable changes in Users DB",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "Changes to Users DB are not logged, so who changed what is unknown.",
+                  "mitigation": "Database audit logging and change history.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 44,
+                  "score": "4"
+                },
+                {
+                  "id": "c87a0ef4-2ca6-4e0b-9ded-a3a490778984",
+                  "title": "Data theft from Users DB",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Stolen backups, direct access or injection expose data stored in Users DB.",
+                  "mitigation": "Encryption at rest, field-level encryption for PII, network isolation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 45,
+                  "score": "5"
+                },
+                {
+                  "id": "79449e01-4f05-48c4-b9a2-b9f28b344787",
+                  "title": "Users DB unavailable or destroyed",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Ransomware, disk exhaustion or an outage makes Users DB unusable.",
+                  "mitigation": "Backups, replication, resource quotas.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 46,
+                  "score": "5"
+                }
+              ],
+              "hasOpenThreats": false,
+              "isALog": true,
+              "isEncrypted": true,
+              "isSigned": false,
+              "storesCredentials": true,
+              "storesInventory": false
+            }
+          },
+          {
+            "shape": "store",
+            "id": "585d2d08-9729-4409-a844-bf7142ae59d7",
+            "zIndex": 12,
+            "visible": true,
+            "position": {
+              "x": 1035.0,
+              "y": 238.5
+            },
+            "size": {
+              "width": 180,
+              "height": 63.0
+            },
+            "attrs": {
+              "text": {
+                "text": "Orders DB"
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "Orders DB",
+              "description": "Orders and addresses",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": "41a2f249-526c-4ede-8d94-9fcafb97e1ea",
+                  "title": "Unauthorised modification of data in Orders DB",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "SQL injection or a stolen DB account lets an attacker change or delete records in Orders DB.",
+                  "mitigation": "Least-privilege DB accounts, parameterised queries, integrity checks.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 47,
+                  "score": "5"
+                },
+                {
+                  "id": "a5d15ed8-517f-4e98-a601-0ae003b644ef",
+                  "title": "Untraceable changes in Orders DB",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Changes to Orders DB are not logged, so who changed what is unknown.",
+                  "mitigation": "Database audit logging and change history.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 48,
+                  "score": "8"
+                },
+                {
+                  "id": "2d6db562-a360-4f37-88a5-5a1d86f04627",
+                  "title": "Data theft from Orders DB",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Stolen backups, direct access or injection expose data stored in Orders DB.",
+                  "mitigation": "Encryption at rest, field-level encryption for PII, network isolation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 49,
+                  "score": "15"
+                },
+                {
+                  "id": "8d6722ea-4079-4ce4-9310-fd3fc817e418",
+                  "title": "Orders DB unavailable or destroyed",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Ransomware, disk exhaustion or an outage makes Orders DB unusable.",
+                  "mitigation": "Backups, replication, resource quotas.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 50,
+                  "score": "5"
+                }
+              ],
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false
+            }
+          },
+          {
+            "shape": "store",
+            "id": "c5908d4f-f578-4fc3-a789-4e3202b08a86",
+            "zIndex": 13,
+            "visible": true,
+            "position": {
+              "x": 1305.0,
+              "y": 454.5
+            },
+            "size": {
+              "width": 180,
+              "height": 63.0
+            },
+            "attrs": {
+              "text": {
+                "text": "Inventory DB"
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "Inventory DB",
+              "description": "Product stock",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": "56758c8a-052e-4b2f-87ea-b2377fbea765",
+                  "title": "Unauthorised modification of data in Inventory DB",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "SQL injection or a stolen DB account lets an attacker change or delete records in Inventory DB.",
+                  "mitigation": "Least-privilege DB accounts, parameterised queries, integrity checks.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 51,
+                  "score": "4"
+                },
+                {
+                  "id": "f2106573-5fd4-401b-9afd-158c5c8de13b",
+                  "title": "Untraceable changes in Inventory DB",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "Changes to Inventory DB are not logged, so who changed what is unknown.",
+                  "mitigation": "Database audit logging and change history.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 52,
+                  "score": "6"
+                },
+                {
+                  "id": "302f3222-3e99-4907-af46-109abda89db7",
+                  "title": "Data theft from Inventory DB",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Stolen backups, direct access or injection expose data stored in Inventory DB.",
+                  "mitigation": "Encryption at rest, field-level encryption for PII, network isolation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 53,
+                  "score": "15"
+                },
+                {
+                  "id": "26897b43-4306-4b18-86fc-5474ec8cd4c9",
+                  "title": "Inventory DB unavailable or destroyed",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Ransomware, disk exhaustion or an outage makes Inventory DB unusable.",
+                  "mitigation": "Backups, replication, resource quotas.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 54,
+                  "score": "4"
+                }
+              ],
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false
+            }
+          },
+          {
+            "shape": "store",
+            "id": "bca037f1-851b-48d2-bc2e-278dddaa7f66",
+            "zIndex": 14,
+            "visible": true,
+            "position": {
+              "x": 1035.0,
+              "y": 670.5
+            },
+            "size": {
+              "width": 180,
+              "height": 63.0
+            },
+            "attrs": {
+              "text": {
+                "text": "Message Broker"
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "Message Broker",
+              "description": "Queue for order events",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "threats": [
+                {
+                  "id": "446a1454-f77b-4108-95fc-028034e6687d",
+                  "title": "Unauthorised modification of data in Message Broker",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "SQL injection or a stolen DB account lets an attacker change or delete records in Message Broker.",
+                  "mitigation": "Least-privilege DB accounts, parameterised queries, integrity checks.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 55,
+                  "score": "12"
+                },
+                {
+                  "id": "20575f6e-504d-4e93-974e-06742397c781",
+                  "title": "Untraceable changes in Message Broker",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Repudiation",
+                  "description": "Changes to Message Broker are not logged, so who changed what is unknown.",
+                  "mitigation": "Database audit logging and change history.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 56,
+                  "score": "6"
+                },
+                {
+                  "id": "cedb013a-8dda-4305-8ea2-3305345f8282",
+                  "title": "Data theft from Message Broker",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Stolen backups, direct access or injection expose data stored in Message Broker.",
+                  "mitigation": "Encryption at rest, field-level encryption for PII, network isolation.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 57,
+                  "score": "15"
+                },
+                {
+                  "id": "3fdbb82f-80d5-4d67-9583-6b2e650a7b38",
+                  "title": "Message Broker unavailable or destroyed",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Ransomware, disk exhaustion or an outage makes Message Broker unusable.",
+                  "mitigation": "Backups, replication, resource quotas.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 58,
+                  "score": "4"
+                }
+              ],
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false
+            }
+          },
+          {
+            "shape": "flow",
+            "id": "ab5e22c0-2872-4961-b23e-05f94e1049bf",
+            "zIndex": 15,
+            "vertices": [],
+            "source": {
+              "cell": "4c097f08-aed1-4c71-a86d-c133d29bf4b3"
+            },
+            "target": {
+              "cell": "829d9131-0412-46b4-b149-f5739bf85a5b"
+            },
+            "labels": [
+              "F1 Browse and checkout"
+            ],
+            "width": 200,
+            "height": 100,
+            "data": {
+              "type": "tm.Flow",
+              "name": "F1 Browse and checkout",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "protocol": "HTTPS",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "threats": [
+                {
+                  "id": "dcb65712-110a-4c3b-bbf4-7c9bbf518b40",
+                  "title": "Data modified in transit on F1 Browse and checkout",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "A man-in-the-middle changes messages travelling over F1 Browse and checkout.",
+                  "mitigation": "TLS 1.2+ or mutual TLS, message signing.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 59,
+                  "score": "5"
+                },
+                {
+                  "id": "31cbe46a-7f42-4016-a988-5ba3543af7d3",
+                  "title": "Eavesdropping on F1 Browse and checkout",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Network sniffing exposes tokens, personal or payment data sent over F1 Browse and checkout.",
+                  "mitigation": "TLS 1.2+ or mutual TLS for every hop, including internal ones.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 60,
+                  "score": "5"
+                },
+                {
+                  "id": "524b70b4-4deb-4adc-8521-06c463e898ea",
+                  "title": "Flooding or blocking of F1 Browse and checkout",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Excess traffic or dropped connections interrupt F1 Browse and checkout.",
+                  "mitigation": "Rate limiting, quotas, retry with back-off.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 61,
+                  "score": "4"
+                }
+              ],
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "shape": "flow",
+            "id": "3f5687c6-d619-4efc-84b6-4efc1c4e3b4b",
+            "zIndex": 16,
+            "vertices": [],
+            "source": {
+              "cell": "68288bb7-982d-4663-8cf2-b3df0927441d"
+            },
+            "target": {
+              "cell": "829d9131-0412-46b4-b149-f5739bf85a5b"
+            },
+            "labels": [
+              "F2 Admin console"
+            ],
+            "width": 200,
+            "height": 100,
+            "data": {
+              "type": "tm.Flow",
+              "name": "F2 Admin console",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "protocol": "HTTPS",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "threats": [
+                {
+                  "id": "9a30a270-db76-4178-b158-9c2626a8346f",
+                  "title": "Data modified in transit on F2 Admin console",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "A man-in-the-middle changes messages travelling over F2 Admin console.",
+                  "mitigation": "TLS 1.2+ or mutual TLS, message signing.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 62,
+                  "score": "5"
+                },
+                {
+                  "id": "d5c668ad-142a-4ca1-a667-90a62f541ae3",
+                  "title": "Eavesdropping on F2 Admin console",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Network sniffing exposes tokens, personal or payment data sent over F2 Admin console.",
+                  "mitigation": "TLS 1.2+ or mutual TLS for every hop, including internal ones.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 63,
+                  "score": "5"
+                },
+                {
+                  "id": "c5aa5364-3032-459b-8d56-6cc34bc6ff5f",
+                  "title": "Flooding or blocking of F2 Admin console",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Excess traffic or dropped connections interrupt F2 Admin console.",
+                  "mitigation": "Rate limiting, quotas, retry with back-off.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 64,
+                  "score": "4"
+                }
+              ],
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "shape": "flow",
+            "id": "c02c20ce-f6b5-4cda-8de1-83e22bc01de6",
+            "zIndex": 17,
+            "vertices": [],
+            "source": {
+              "cell": "829d9131-0412-46b4-b149-f5739bf85a5b"
+            },
+            "target": {
+              "cell": "350b093a-f73a-4b68-9333-e97ed8602f96"
+            },
+            "labels": [
+              "F3 Token validation"
+            ],
+            "width": 200,
+            "height": 100,
+            "data": {
+              "type": "tm.Flow",
+              "name": "F3 Token validation",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "protocol": "HTTP",
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "threats": [
+                {
+                  "id": "73a41504-921f-49c4-810e-25270d4fee9a",
+                  "title": "Data modified in transit on F3 Token validation",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "A man-in-the-middle changes messages travelling over F3 Token validation.",
+                  "mitigation": "TLS 1.2+ or mutual TLS, message signing.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 65,
+                  "score": "15"
+                },
+                {
+                  "id": "17c27f63-bcdf-45df-b9ad-8699f38dba23",
+                  "title": "Eavesdropping on F3 Token validation",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Network sniffing exposes tokens, personal or payment data sent over F3 Token validation.",
+                  "mitigation": "TLS 1.2+ or mutual TLS for every hop, including internal ones.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 66,
+                  "score": "15"
+                },
+                {
+                  "id": "1d7c3dab-8e08-4c3d-9d06-a105789ee7ac",
+                  "title": "Flooding or blocking of F3 Token validation",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Excess traffic or dropped connections interrupt F3 Token validation.",
+                  "mitigation": "Rate limiting, quotas, retry with back-off.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 67,
+                  "score": "8"
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          },
+          {
+            "shape": "flow",
+            "id": "84cc0d51-f753-41b5-afd4-4b3d84069b76",
+            "zIndex": 18,
+            "vertices": [],
+            "source": {
+              "cell": "829d9131-0412-46b4-b149-f5739bf85a5b"
+            },
+            "target": {
+              "cell": "cffc110e-1eba-4fbb-b0a9-870b04e7c328"
+            },
+            "labels": [
+              "F4 Order API"
+            ],
+            "width": 200,
+            "height": 100,
+            "data": {
+              "type": "tm.Flow",
+              "name": "F4 Order API",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "protocol": "HTTPS (mTLS)",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "threats": [
+                {
+                  "id": "a36a7a57-8a24-418a-870d-b38579884b1f",
+                  "title": "Data modified in transit on F4 Order API",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "A man-in-the-middle changes messages travelling over F4 Order API.",
+                  "mitigation": "TLS 1.2+ or mutual TLS, message signing.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 68,
+                  "score": "5"
+                },
+                {
+                  "id": "f1fa473a-e2c4-4774-8e39-6b0f8702524a",
+                  "title": "Eavesdropping on F4 Order API",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Network sniffing exposes tokens, personal or payment data sent over F4 Order API.",
+                  "mitigation": "TLS 1.2+ or mutual TLS for every hop, including internal ones.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 69,
+                  "score": "5"
+                },
+                {
+                  "id": "56bda555-73cf-411e-abbd-75fc077e0f1a",
+                  "title": "Flooding or blocking of F4 Order API",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Excess traffic or dropped connections interrupt F4 Order API.",
+                  "mitigation": "Rate limiting, quotas, retry with back-off.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 70,
+                  "score": "4"
+                }
+              ],
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "shape": "flow",
+            "id": "d031298e-79ce-46c1-a52c-99507a14abd0",
+            "zIndex": 19,
+            "vertices": [],
+            "source": {
+              "cell": "cffc110e-1eba-4fbb-b0a9-870b04e7c328"
+            },
+            "target": {
+              "cell": "585d2d08-9729-4409-a844-bf7142ae59d7"
+            },
+            "labels": [
+              "F5 Order SQL queries"
+            ],
+            "width": 200,
+            "height": 100,
+            "data": {
+              "type": "tm.Flow",
+              "name": "F5 Order SQL queries",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "protocol": "SQL",
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "threats": [
+                {
+                  "id": "059aa5a2-86a2-4b52-9ef6-eafb75a1f33e",
+                  "title": "Data modified in transit on F5 Order SQL queries",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "A man-in-the-middle changes messages travelling over F5 Order SQL queries.",
+                  "mitigation": "TLS 1.2+ or mutual TLS, message signing.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 71,
+                  "score": "15"
+                },
+                {
+                  "id": "a66c5fa4-2927-4a5d-8ec5-001133ac3876",
+                  "title": "Eavesdropping on F5 Order SQL queries",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Network sniffing exposes tokens, personal or payment data sent over F5 Order SQL queries.",
+                  "mitigation": "TLS 1.2+ or mutual TLS for every hop, including internal ones.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 72,
+                  "score": "15"
+                },
+                {
+                  "id": "4905a94e-b57a-4dcf-b29f-0b214462904c",
+                  "title": "Flooding or blocking of F5 Order SQL queries",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Excess traffic or dropped connections interrupt F5 Order SQL queries.",
+                  "mitigation": "Rate limiting, quotas, retry with back-off.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 73,
+                  "score": "8"
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          },
+          {
+            "shape": "flow",
+            "id": "91e29672-6cba-463b-8ac2-02f6c1368d0a",
+            "zIndex": 20,
+            "vertices": [],
+            "source": {
+              "cell": "cffc110e-1eba-4fbb-b0a9-870b04e7c328"
+            },
+            "target": {
+              "cell": "c3134fca-89b8-4672-b636-8299646deca8"
+            },
+            "labels": [
+              "F6 Stock check"
+            ],
+            "width": 200,
+            "height": 100,
+            "data": {
+              "type": "tm.Flow",
+              "name": "F6 Stock check",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "protocol": "gRPC",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "threats": [
+                {
+                  "id": "cc31a617-422f-4dc0-8d67-b7a1fb57f391",
+                  "title": "Data modified in transit on F6 Stock check",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "A man-in-the-middle changes messages travelling over F6 Stock check.",
+                  "mitigation": "TLS 1.2+ or mutual TLS, message signing.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 74,
+                  "score": "4"
+                },
+                {
+                  "id": "8cfcfcc8-048c-41ac-9ea8-0edb3249d347",
+                  "title": "Eavesdropping on F6 Stock check",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Network sniffing exposes tokens, personal or payment data sent over F6 Stock check.",
+                  "mitigation": "TLS 1.2+ or mutual TLS for every hop, including internal ones.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 75,
+                  "score": "4"
+                },
+                {
+                  "id": "22827fdc-8095-4216-b307-1c38436fb24f",
+                  "title": "Flooding or blocking of F6 Stock check",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Excess traffic or dropped connections interrupt F6 Stock check.",
+                  "mitigation": "Rate limiting, quotas, retry with back-off.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 76,
+                  "score": "3"
+                }
+              ],
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "shape": "flow",
+            "id": "9e9bb732-1773-4ce3-8f08-16b5607d5909",
+            "zIndex": 21,
+            "vertices": [],
+            "source": {
+              "cell": "c3134fca-89b8-4672-b636-8299646deca8"
+            },
+            "target": {
+              "cell": "c5908d4f-f578-4fc3-a789-4e3202b08a86"
+            },
+            "labels": [
+              "F7 Stock SQL queries"
+            ],
+            "width": 200,
+            "height": 100,
+            "data": {
+              "type": "tm.Flow",
+              "name": "F7 Stock SQL queries",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "protocol": "SQL (TLS)",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "threats": [
+                {
+                  "id": "f52655ed-55ab-4122-97f7-ca3b8692bf8a",
+                  "title": "Data modified in transit on F7 Stock SQL queries",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "A man-in-the-middle changes messages travelling over F7 Stock SQL queries.",
+                  "mitigation": "TLS 1.2+ or mutual TLS, message signing.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 77,
+                  "score": "4"
+                },
+                {
+                  "id": "9ead848b-5f02-4562-84b0-a74474ea8674",
+                  "title": "Eavesdropping on F7 Stock SQL queries",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Network sniffing exposes tokens, personal or payment data sent over F7 Stock SQL queries.",
+                  "mitigation": "TLS 1.2+ or mutual TLS for every hop, including internal ones.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 78,
+                  "score": "4"
+                },
+                {
+                  "id": "03ad4d60-65ea-4d71-8c4a-6255908bc4d9",
+                  "title": "Flooding or blocking of F7 Stock SQL queries",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Excess traffic or dropped connections interrupt F7 Stock SQL queries.",
+                  "mitigation": "Rate limiting, quotas, retry with back-off.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 79,
+                  "score": "6"
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          },
+          {
+            "shape": "flow",
+            "id": "148b82e2-669b-42d3-9643-872c45e94747",
+            "zIndex": 22,
+            "vertices": [],
+            "source": {
+              "cell": "cffc110e-1eba-4fbb-b0a9-870b04e7c328"
+            },
+            "target": {
+              "cell": "ce0679b8-d403-44a8-9667-e91e8b4eee37"
+            },
+            "labels": [
+              "F8 Charge request"
+            ],
+            "width": 200,
+            "height": 100,
+            "data": {
+              "type": "tm.Flow",
+              "name": "F8 Charge request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "protocol": "HTTPS",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "threats": [
+                {
+                  "id": "1d5869fb-7856-4595-b491-c82fa1bae5cc",
+                  "title": "Data modified in transit on F8 Charge request",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "A man-in-the-middle changes messages travelling over F8 Charge request.",
+                  "mitigation": "TLS 1.2+ or mutual TLS, message signing.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 80,
+                  "score": "5"
+                },
+                {
+                  "id": "7a2f4788-e61e-4675-b586-5cdacd455e79",
+                  "title": "Eavesdropping on F8 Charge request",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Network sniffing exposes tokens, personal or payment data sent over F8 Charge request.",
+                  "mitigation": "TLS 1.2+ or mutual TLS for every hop, including internal ones.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 81,
+                  "score": "5"
+                },
+                {
+                  "id": "21ab2ac4-1f66-417b-8359-6b78acd92b97",
+                  "title": "Flooding or blocking of F8 Charge request",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Excess traffic or dropped connections interrupt F8 Charge request.",
+                  "mitigation": "Rate limiting, quotas, retry with back-off.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 82,
+                  "score": "4"
+                }
+              ],
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "shape": "flow",
+            "id": "62fa16fb-dbb2-4ac8-bf1c-305813814933",
+            "zIndex": 23,
+            "vertices": [],
+            "source": {
+              "cell": "ce0679b8-d403-44a8-9667-e91e8b4eee37"
+            },
+            "target": {
+              "cell": "05fee58a-7213-483e-94ee-42f86dc954b0"
+            },
+            "labels": [
+              "F9 Card payment API"
+            ],
+            "width": 200,
+            "height": 100,
+            "data": {
+              "type": "tm.Flow",
+              "name": "F9 Card payment API",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "protocol": "HTTPS",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "threats": [
+                {
+                  "id": "1e3c5452-dff0-4f6f-8ccb-c49ce5d46950",
+                  "title": "Data modified in transit on F9 Card payment API",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "A man-in-the-middle changes messages travelling over F9 Card payment API.",
+                  "mitigation": "TLS 1.2+ or mutual TLS, message signing.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 83,
+                  "score": "5"
+                },
+                {
+                  "id": "2cdcdc20-4cd1-41fd-97f3-ebfa09d9041f",
+                  "title": "Eavesdropping on F9 Card payment API",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Network sniffing exposes tokens, personal or payment data sent over F9 Card payment API.",
+                  "mitigation": "TLS 1.2+ or mutual TLS for every hop, including internal ones.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 84,
+                  "score": "5"
+                },
+                {
+                  "id": "b539c591-fe21-430c-bf62-271411299707",
+                  "title": "Flooding or blocking of F9 Card payment API",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Excess traffic or dropped connections interrupt F9 Card payment API.",
+                  "mitigation": "Rate limiting, quotas, retry with back-off.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 85,
+                  "score": "4"
+                }
+              ],
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "shape": "flow",
+            "id": "6ea5292d-1a9a-475f-b3e2-778abe65730e",
+            "zIndex": 24,
+            "vertices": [],
+            "source": {
+              "cell": "05fee58a-7213-483e-94ee-42f86dc954b0"
+            },
+            "target": {
+              "cell": "ce0679b8-d403-44a8-9667-e91e8b4eee37"
+            },
+            "labels": [
+              "F10 Payment webhook"
+            ],
+            "width": 200,
+            "height": 100,
+            "data": {
+              "type": "tm.Flow",
+              "name": "F10 Payment webhook",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "protocol": "HTTPS",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "threats": [
+                {
+                  "id": "fe62e48c-094a-476f-b121-fe1526a36d19",
+                  "title": "Data modified in transit on F10 Payment webhook",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "A man-in-the-middle changes messages travelling over F10 Payment webhook.",
+                  "mitigation": "TLS 1.2+ or mutual TLS, message signing.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 86,
+                  "score": "5"
+                },
+                {
+                  "id": "5035263b-8ddd-4445-95b6-0fb244d24bac",
+                  "title": "Eavesdropping on F10 Payment webhook",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Network sniffing exposes tokens, personal or payment data sent over F10 Payment webhook.",
+                  "mitigation": "TLS 1.2+ or mutual TLS for every hop, including internal ones.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 87,
+                  "score": "5"
+                },
+                {
+                  "id": "4b56ebb8-e0dd-478f-a7e5-61016ee82b2b",
+                  "title": "Flooding or blocking of F10 Payment webhook",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Excess traffic or dropped connections interrupt F10 Payment webhook.",
+                  "mitigation": "Rate limiting, quotas, retry with back-off.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 88,
+                  "score": "12"
+                },
+                {
+                  "id": "1224e5b1-1d04-43f8-974b-80abaadeb86e",
+                  "title": "Unauthenticated data flow F10 Payment webhook",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Messages on F10 Payment webhook are accepted without verifying the sender, so an attacker can forge them.",
+                  "mitigation": "Verify sender identity: signed requests (HMAC), mutual TLS or broker credentials.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 89,
+                  "score": "25"
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          },
+          {
+            "shape": "flow",
+            "id": "1373db3f-f8d0-4d80-8774-386e64cd1706",
+            "zIndex": 25,
+            "vertices": [],
+            "source": {
+              "cell": "350b093a-f73a-4b68-9333-e97ed8602f96"
+            },
+            "target": {
+              "cell": "bbb7f713-7223-4ad7-99af-4523abd493f0"
+            },
+            "labels": [
+              "F11 Credential lookup"
+            ],
+            "width": 200,
+            "height": 100,
+            "data": {
+              "type": "tm.Flow",
+              "name": "F11 Credential lookup",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "protocol": "SQL (TLS)",
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "threats": [
+                {
+                  "id": "aefacd63-34ea-4368-93c6-6f439dfa8546",
+                  "title": "Data modified in transit on F11 Credential lookup",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Tampering",
+                  "description": "A man-in-the-middle changes messages travelling over F11 Credential lookup.",
+                  "mitigation": "TLS 1.2+ or mutual TLS, message signing.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 90,
+                  "score": "5"
+                },
+                {
+                  "id": "fa110273-8646-49db-a594-c05c9600318b",
+                  "title": "Eavesdropping on F11 Credential lookup",
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Network sniffing exposes tokens, personal or payment data sent over F11 Credential lookup.",
+                  "mitigation": "TLS 1.2+ or mutual TLS for every hop, including internal ones.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 91,
+                  "score": "5"
+                },
+                {
+                  "id": "d34addc1-6e2a-475e-a40e-9892d6f2dda6",
+                  "title": "Flooding or blocking of F11 Credential lookup",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Excess traffic or dropped connections interrupt F11 Credential lookup.",
+                  "mitigation": "Rate limiting, quotas, retry with back-off.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 92,
+                  "score": "8"
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          },
+          {
+            "shape": "flow",
+            "id": "25eceec0-8271-4f9f-ab11-f4e33c30193c",
+            "zIndex": 26,
+            "vertices": [],
+            "source": {
+              "cell": "cffc110e-1eba-4fbb-b0a9-870b04e7c328"
+            },
+            "target": {
+              "cell": "bca037f1-851b-48d2-bc2e-278dddaa7f66"
+            },
+            "labels": [
+              "F12 Publish order event"
+            ],
+            "width": 200,
+            "height": 100,
+            "data": {
+              "type": "tm.Flow",
+              "name": "F12 Publish order event",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "protocol": "AMQP",
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "threats": [
+                {
+                  "id": "af227951-645c-48f0-87ed-d3a35e3b8a6e",
+                  "title": "Data modified in transit on F12 Publish order event",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "A man-in-the-middle changes messages travelling over F12 Publish order event.",
+                  "mitigation": "TLS 1.2+ or mutual TLS, message signing.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 93,
+                  "score": "12"
+                },
+                {
+                  "id": "8879415f-63f3-47fe-acc9-927e6fc3be3b",
+                  "title": "Eavesdropping on F12 Publish order event",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Network sniffing exposes tokens, personal or payment data sent over F12 Publish order event.",
+                  "mitigation": "TLS 1.2+ or mutual TLS for every hop, including internal ones.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 94,
+                  "score": "12"
+                },
+                {
+                  "id": "62decaed-1b95-4a69-a1be-1de4eb851ec2",
+                  "title": "Flooding or blocking of F12 Publish order event",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Excess traffic or dropped connections interrupt F12 Publish order event.",
+                  "mitigation": "Rate limiting, quotas, retry with back-off.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 95,
+                  "score": "6"
+                },
+                {
+                  "id": "0c88464b-b03b-4784-bab5-b4210de95a22",
+                  "title": "Unauthenticated data flow F12 Publish order event",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Messages on F12 Publish order event are accepted without verifying the sender, so an attacker can forge them.",
+                  "mitigation": "Verify sender identity: signed requests (HMAC), mutual TLS or broker credentials.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 96,
+                  "score": "20"
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          },
+          {
+            "shape": "flow",
+            "id": "55e901ee-f9c8-4dfd-9533-48b1be4e4ae6",
+            "zIndex": 27,
+            "vertices": [],
+            "source": {
+              "cell": "bca037f1-851b-48d2-bc2e-278dddaa7f66"
+            },
+            "target": {
+              "cell": "86363e78-6491-4453-b232-c353cd099796"
+            },
+            "labels": [
+              "F13 Consume order event"
+            ],
+            "width": 200,
+            "height": 100,
+            "data": {
+              "type": "tm.Flow",
+              "name": "F13 Consume order event",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "protocol": "AMQP",
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "threats": [
+                {
+                  "id": "ae176ef4-ad7c-4e29-b10a-85e925eb8235",
+                  "title": "Data modified in transit on F13 Consume order event",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "A man-in-the-middle changes messages travelling over F13 Consume order event.",
+                  "mitigation": "TLS 1.2+ or mutual TLS, message signing.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 97,
+                  "score": "12"
+                },
+                {
+                  "id": "d6e4c80a-0eec-44db-a8c0-c1950bfe5394",
+                  "title": "Eavesdropping on F13 Consume order event",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Network sniffing exposes tokens, personal or payment data sent over F13 Consume order event.",
+                  "mitigation": "TLS 1.2+ or mutual TLS for every hop, including internal ones.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 98,
+                  "score": "12"
+                },
+                {
+                  "id": "141afb89-a884-4790-944f-5de29eabdcf1",
+                  "title": "Flooding or blocking of F13 Consume order event",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Excess traffic or dropped connections interrupt F13 Consume order event.",
+                  "mitigation": "Rate limiting, quotas, retry with back-off.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 99,
+                  "score": "6"
+                },
+                {
+                  "id": "4ead85d3-bcd8-461e-b90d-b858d703eb3d",
+                  "title": "Unauthenticated data flow F13 Consume order event",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Messages on F13 Consume order event are accepted without verifying the sender, so an attacker can forge them.",
+                  "mitigation": "Verify sender identity: signed requests (HMAC), mutual TLS or broker credentials.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 100,
+                  "score": "20"
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          },
+          {
+            "shape": "flow",
+            "id": "08ada9d3-8a99-461f-b7ee-1db7a49e581a",
+            "zIndex": 28,
+            "vertices": [],
+            "source": {
+              "cell": "86363e78-6491-4453-b232-c353cd099796"
+            },
+            "target": {
+              "cell": "4c097f08-aed1-4c71-a86d-c133d29bf4b3"
+            },
+            "labels": [
+              "F14 Email / SMS to customer"
+            ],
+            "width": 200,
+            "height": 100,
+            "data": {
+              "type": "tm.Flow",
+              "name": "F14 Email / SMS to customer",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "protocol": "SMTP/SMS",
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "threats": [
+                {
+                  "id": "b7730300-e897-4baf-b55f-6335c7c2c834",
+                  "title": "Data modified in transit on F14 Email / SMS to customer",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "A man-in-the-middle changes messages travelling over F14 Email / SMS to customer.",
+                  "mitigation": "TLS 1.2+ or mutual TLS, message signing.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 101,
+                  "score": "16"
+                },
+                {
+                  "id": "2e5231ac-b9d0-4fa8-85b2-adc607e9d49f",
+                  "title": "Eavesdropping on F14 Email / SMS to customer",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Network sniffing exposes tokens, personal or payment data sent over F14 Email / SMS to customer.",
+                  "mitigation": "TLS 1.2+ or mutual TLS for every hop, including internal ones.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 102,
+                  "score": "16"
+                },
+                {
+                  "id": "5b85a443-67ae-4d2a-98a3-db5a985c8019",
+                  "title": "Flooding or blocking of F14 Email / SMS to customer",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Excess traffic or dropped connections interrupt F14 Email / SMS to customer.",
+                  "mitigation": "Rate limiting, quotas, retry with back-off.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 103,
+                  "score": "9"
+                }
+              ],
+              "hasOpenThreats": true
+            }
+          }
+        ]
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "",
+    "threatTop": 103
+  }
+}
